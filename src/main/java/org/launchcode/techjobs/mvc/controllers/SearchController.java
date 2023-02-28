@@ -34,7 +34,9 @@ public class SearchController {
 
         ArrayList<Job> jobs;
 
-        if (searchType.equals("all") || searchTerm.isEmpty()) {
+        if (searchTerm.isEmpty() || searchTerm.equals("all")) {
+            jobs = JobData.findAll();
+        } else if (searchType.equals("all")) {
             jobs = JobData.findByValue(searchTerm);
         } else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
