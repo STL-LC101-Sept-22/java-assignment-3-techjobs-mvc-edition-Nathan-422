@@ -24,6 +24,7 @@ public class SearchController {
     @GetMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("searchType", "all");
         return "search";
     }
 
@@ -31,6 +32,8 @@ public class SearchController {
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam(required = false) String searchTerm) {
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("searchTerm", searchTerm);
 
         ArrayList<Job> jobs;
 
